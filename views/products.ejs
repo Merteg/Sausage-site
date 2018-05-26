@@ -1,0 +1,14 @@
+<% var title = "Our products" %>
+<% include head.ejs %>
+<% for(let i = 0; i < productArray.length; i++) {
+    item = productArray[i] %>
+        <div>
+            <img src="<%= item.img %>" alt="Product Image">
+            <h3><a href="/products/<%= item.id_product %>"><%= item.name %></a></h3>
+            <p><%= item.description %></p>
+            <span><%= item.price %> $</span>
+            <input type="number" name="count" min="1" max= "<%= item.count %>" value="1">
+            <button onclick="addToCart(<%= item.id_product %>, document.getElementsByName('count')[0].value)">В корзину</button>
+        </div>
+<% } %>
+<% include footer.ejs %>

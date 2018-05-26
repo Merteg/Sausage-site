@@ -1,0 +1,20 @@
+<% var title = "Login" %>
+<% include head.ejs %>
+<p id="greeting"></p>
+<% if(rights == 'admin'){ %>
+    <p>Ти адмін</p>
+<% } 
+else {%>
+    <p>Ти простий смертний</p>
+<% } %>
+<button onclick="logout()">Log Out</button>
+<% if(locals.login) {%>
+<script>
+    setCookie("login", "<%= login %>", {path: "/"});
+    setCookie("rights", "<%= rights %>", {path: "/"});
+</script>
+<% } %>
+<script>
+    document.getElementById("greeting").innerText = "Доброго часу доби " + getCookie("login"); 
+</script>
+<% include footer.ejs %>

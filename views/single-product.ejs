@@ -1,0 +1,11 @@
+<% var title = name %>
+<% include head.ejs %>
+    <div>
+        <h2><%= name %></h2>
+        <img src="<%= img %>" alt="Product Image">
+        <p><%= description %></p>
+        <span><%= price %> $</span>
+        <input type="number" name="count" min="1" max= "<%= count %>" value="1">
+        <button onclick="addToCart(<%= item.id_product %>, document.getElementsByName('count')[0].value)">В корзину</button>
+    </div>
+<% include footer.ejs %>
