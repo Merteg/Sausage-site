@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<title><%= subject %></title>
+<style type="text/css"></style>
+</head>
+<body>
+    <table>
+        <tr><td>ID товару</td><td>Назва товару</td><td>Ціна за одиницю</td><td>Замовлена к-сть</td></tr>
+    <% for(let i = 0; i < otherProperty.length; i++) {
+        item = otherProperty[i] %>
+        <tr><td><%= item.id_product %></td><td><%= item.name %></td><td><%= item.price %> Грн</td><td><%= counts[item.id_product] %></td></tr>       
+    <% } %>
+    </table>
+</body>
+</html>

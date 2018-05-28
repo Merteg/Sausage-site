@@ -39,6 +39,7 @@ function deleteCookie(name) {
 }
 function logout(){
     deleteCookie("login");
+    deleteCookie("rights");
     window.location.href = "/login";
 }
 function addToCart(id_product, count){
