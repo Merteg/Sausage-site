@@ -1,34 +1,28 @@
 <% var title = "Your cart" %>
 <% include head.ejs %>
 <% if(locals.productArray) { %>
+    <table>
 <% for(let i = 0; i < productArray.length; i++) {
     item = productArray[i] %>
-        <div class="<%= item.id_product %>">
-            <div>
-                <h3><a href="/products/<%= item.id_product %>"><%= item.name %></a></h3>
-                <span><%= item.price %> $</span>
-                <input type="number" name="count" min="1" max= "<%= item.count %>" value="<%= cookie[item.id_product] %>">
-                <button id="<%= item.id_product %>" onclick="deleteFromCart(this.id)">Вилучити</button>
-            </div>
-        </div>
+        <tr class="<%= item.id_product %>">
+                <td><a href="/products/<%= item.id_product %>"><%= item.name %></a></td>
+                <td><img src="<%= item.img %>" alt=""></td>
+                <td><span><%= item.price %> $</span></td>
+                <td><input type="number" name="count" min="1" max= "<%= item.count %>" value="<%= cookie[item.id_product] %>"></td>
+                <td><button id="<%= item.id_product %>" onclick="deleteFromCart(this.id)">Вилучити</button></td>
+        </tr>
 <% } %>
-<form onsubmit="checkOrder();" method="POST" action="/order">
-    <button type="submit">Оформити замовлення</button>
+</table>
+<form onsubmit="return checkOrder();" method="POST" action="/order">
+    <button class="order" type="submit">Оформити замовлення</button>
 </form>
 <% } else { %>
-<p>Кошик порожній</p>
+<p class="messege">Кошик порожній</p>
 <% } %>
 <script>
     function deleteFromCart(id){
         deleteCookie("product"+id);
         document.getElementsByClassName(id)[0].innerHTML = "";
-    }
-    function checkOrder(){
-        if(getCookie("login")) return true;
-        else {
-            alert("Ви повинні увійти як користувач!") 
-            return false;
-        }
     }
 </script>
 <% include footer.ejs %>

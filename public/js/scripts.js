@@ -43,6 +43,18 @@ function logout(){
     window.location.href = "/login";
 }
 function addToCart(id_product, count){
-    if(getCookie("product" + id_product)) count += getCookie("product" + id_product);
+    count = +count;
+    if(getCookie("product" + id_product)){
+        let a = +getCookie("product" + id_product);
+        count = +count +a;
+    } 
     setCookie("product" + id_product, count, {path: "/"});
+}
+
+function checkOrder(){
+    if(getCookie("login")) return true;
+    else {
+        alert("Ви повинні увійти як користувач!");
+        return false;
+    }
 }

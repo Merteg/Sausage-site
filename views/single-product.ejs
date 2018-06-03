@@ -1,11 +1,56 @@
 <% var title = name %>
 <% include head.ejs %>
-    <div>
-        <h2><%= name %></h2>
-        <img src="<%= img %>" alt="Product Image">
-        <p><%= description %></p>
-        <span><%= price %> $</span>
-        <input type="number" name="count" min="1" max= "<%= count %>" value="1">
-        <button onclick="addToCart(<%= item.id_product %>, document.getElementsByName('count')[0].value)">В корзину</button>
+<div class="container single-product">
+<h2><%= name %></h2>
+<% if(locals.average) {%>
+<h6 class="mb-2 text-muted">Середня оцінка: <%= average %></h6>
+<% } %>
+    <div class="prod">
+        <div class="img-wrapper">
+            <img src="<%= img %>" alt="Product Image">
+        </div>
+        <div class="txt-wrapper">
+                <p><%= description %></p>
+                <span><%= price %> $</span>
+                <p>Кількість товарів до замовленя: <input type="number" name="count" min="1" max= "<%= count %>" value="1"></p>
+                <button onclick="addToCart(<%= id_product %>, document.getElementsByName('count')[0].value)">В корзину</button>
+        </div>
     </div>
+    <div class="comments">
+        <h3>Коментарі</h3>
+        <% for(let i = 0; i < comments.length; i++) {
+            item = comments[i];
+            for(let j = 0; j < users.length; j++){
+                if(users[j].id_user == item.id_user) nickname = users[j].login;
+            } %>
+            <div class="card border-info">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <p><%= item.respond %></p>
+                    <h6 class="card-subtitle mb-2 text-muted">Оцінка: <%= item.mark %></h6>
+                    <footer class="blockquote-footer">Коментар залишив <cite title="Source Title"><%= nickname %></cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+        <%}%>
+        <form onsubmit="return checkOrder();" action="/comment" method="POST">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Оберіть оцінку</label>
+              <input style="display: none" type="number" name="id_product" value="<%= id_product %>">
+              <select name="mark" class="form-control" id="exampleFormControlSelect1">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Ваш коментар</label>
+              <textarea class="form-control" name="respond" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+                <button class="btn btn-success" type="submit">Залишити коментар</button>
+          </form>
+    </div>
+</div>
 <% include footer.ejs %>

@@ -1,3 +1,36 @@
 <% var title = "Main Page" %>
-<% include head.ejs %>
-<% include footer.ejs %>
+    <% include head.ejs %>
+        <div class="top-widget">
+            <div class="text-block">
+                <h2>Рівненські ковбаси</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis provident nulla, id possimus autem neque
+                    voluptates voluptas in consequatur enim vitae natus, facilis ea libero recusandae repellendus, rerum
+                    non nihil?</p>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="sep-text about-us">
+                <h2>Хто ми?</h2>
+                <img src="/public/img/page-separator.png" alt="">
+                <p>ТМ "Рівненські ковбаси" - це прекрасний вибір до Вашого столу. Смачні ковбаси, копчено-запечені вироби, та
+                    продукти з птиці. Продукція славиться своєю якістю і натуральністю, адже виготовляється в контрольованих
+                    умовах українських високваліфікованих спеціалістів. Сировина для виробництва закупляється в екологічно-чистих
+                    господарствах та у населення полісся. Помірні ціни стануть надійним союзником для вашого бізнесу. </p>
+            </div>
+            <div class="main-page-production">
+                <h2>Наша продукція</h2>
+                <div class="black-bg">
+                    <a href="/products">
+                        <div class="img-wrapper">
+                            <img src="/public/img/arrow.jpg" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="sep-text registrate">
+                <h2>Зробити замовлення</h2>
+                <img src="/public/img/Separator2.png" alt="">
+                <p>Аби зробити замовлення на нашому сайті Вам спочатку потрібно зареєструватись, зробити це можна <a href="/registration">тут</a>. Огляньте <a href="/products">продукцію</a>, оберіть товар та кількість яка Вам необхідна. Після цього ви можете переглянути свої товари у <a href="/cart">кошику</a> ще раз, і якщо Вас все влаштовує, оформити замовлення.</p>
+            </div>
+        </div>
+        <% include footer.ejs %>

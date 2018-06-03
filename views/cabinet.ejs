@@ -1,30 +1,62 @@
 <% var title = "Login" %>
 <% include head.ejs %>
-<p id="greeting"></p>
+<div class="cab">
+<div class="container">
+<p class="alert alert-primary" role="alert" id="greeting"></p>
+<% if(locals.errr){ %>
+<p class="alert alert-danger" role="alert"><%= errr %></p>
+<% } %>
+<h2>Зміна пароля</h2>
+<form action="/change" method="POST">
+    <div class="form-group">
+        <label for="exampleInputPassword1">Старий пароль</label>
+        <input type="password" name="old_pass" class="form-control" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Новий пароль</label>
+        <input type="password" name="new_pass" class="form-control" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Змінити пароль</button>
+</form>
 <% if(rights == 'admin'){ %>
-    <p>Ти адмін</p>
-    <a href="/edit">Add new product</a>
+    <a href="/edit" class="alert-link">Add new product</a>
+    <table>
     <% for(let i = 0; i < productArray.length; i++) {
         item = productArray[i] %>
-            <div>
-                <h3><a href="/products/<%= item.id_product %>"><%= item.name %></a></h3>
-                <a href="/edit?id=<%= item.id_product %>">Edit</a>
-                <a href="/delete?type=product&id=<%= item.id_product %>">Delete</a>
-            </div>
+        <tr> 
+            <td><a href="/products/<%= item.id_product %>"><%= item.name %></a></td>
+            <td><a href="/edit?id=<%= item.id_product %>">Edit</a></td>
+            <td><a href="/delete?type=product&id=<%= item.id_product %>">Delete</a></td>
+        </tr>
     <% } %>
+    </table>
+    <table>
     <% for(let i = 0; i < ordersArray.length; i++) {
         item = ordersArray[i] %>
-            <div>
-                <p><%= item.id_order %></p>
-                <time><%= item.order_date %></time>
-                <a href="/delete?type=order&id=<%= item.id_order %>">Видалити замовлення зі списку</button>
-            </div>
+            <tr>
+                <td><p><%= item.id_order %></p></td>
+                <td><time><%= item.order_date %></time></td>
+                <td><a href="/delete?type=order&id=<%= item.id_order %>">Видалити замовлення зі списку</a></td>
+            </tr>
     <% } %>
+    </table>
 <% } 
 else {%>
-    <p>Ти простий смертний</p>
+    <p>Вітаємо у Вашому кабінеті</p>
+    <div class="main-page-production">
+        <h2>Наша продукція</h2>
+        <div class="black-bg">
+            <a href="/products">
+                <div class="img-wrapper">
+                    <img src="/public/img/arrow.jpg" alt="">
+                </div>
+            </a>
+        </div>
+    </div>
 <% } %>
-<button onclick="logout()">Log Out</button>
+<button class="btn btn-warning" onclick="logout()">Log Out</button>
+</div>
+</div>
 <% if(locals.login) {%>
 <script>
     setCookie("login", "<%= login %>", {path: "/"});
