@@ -35,6 +35,7 @@
 .top-widget .text-block {
     height: 408px;
     width: 450px;
+    padding: 5px;
     background: black;
     margin-left: 150px;
     text-align: center;
@@ -275,4 +276,32 @@ button.order {
     font-size: 77px;
     float: right;
     width: 58.5%;
+}
+
+.contacts-head {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.contacts-head div {
+    height: 100px;
+    text-align: center;
+}
+.contacts-head hr {
+    height: 10px;
+    background-color: black;
+    border: none;
+    margin: 35px 0;
+}
+.contacts-head h2 {
+    font: 800 60px 'Marck Script';
+}
+.contacts .txt-block {
+    font: 20px 'Roboto';
+    text-align: center;
+    margin: 40px auto;
+}
+.contacts .txt-block span {
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 28px;
 }

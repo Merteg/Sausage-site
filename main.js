@@ -256,7 +256,7 @@ app.post('/comment', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
     connection.query("SELECT * FROM `users` WHERE login='" + req.cookies.login + "'", function (error, results, fields) {
         if (error) throw error;
-        let sql_query = "INSERT INTO `sausege_db`.`comments`(`id_user`, `id_product`, `respond`, `mark`) VALUES ('" + results[0].id_user + "','" + req.body.id_product + "', '" + req.body.respond + "', '" + req.body.mark + "')";
+        let sql_query = "INSERT INTO `sausege_db`.`comments` (`id_user`, `id_product`, `respond`, `mark`) VALUES ('" + results[0].id_user + "','" + req.body.id_product + "', '" + req.body.respond + "', '" + req.body.mark + "')";
         connection.query(sql_query, function (error, results, fields) {
             if (error) throw error;
             res.redirect('/products/' + req.body.id_product);
